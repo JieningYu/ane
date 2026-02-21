@@ -1,6 +1,6 @@
 LIB_NAME = libane
 
-CC = gcc
+CC = clang
 CFLAGS = -I. -Wall -Werror -Wextra \
 	-Wdeclaration-after-statement \
 	-O3 -std=gnu99
@@ -15,7 +15,7 @@ OBJECTS = $(BUILD_DIR)/ane.o
 .PHONY: libane install uninstall clean
 
 libane: $(OBJECTS)
-	ld -r $(OBJECTS) -o $(BUILD_DIR)/${LIB_NAME}.o
+	ld.lld -r $(OBJECTS) -o $(BUILD_DIR)/${LIB_NAME}.o
 	ar rcs $(BUILD_DIR)/${LIB_NAME}.a $(BUILD_DIR)/${LIB_NAME}.o
 
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.c
